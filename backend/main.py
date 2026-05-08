@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-
+import requests
 from fastapi.middleware.cors import CORSMiddleware
 
 from database import (
@@ -10,7 +10,7 @@ from database import (
 )
 
 app = FastAPI()
-
+AVIATIONSTACK_API_KEY = "50259289f432d082941ac236b2a5b5de"
 # =========================================
 # ENABLE FRONTEND ACCESS
 # =========================================
@@ -296,3 +296,93 @@ def simulate_disruption(airport_code: str):
         }
     ]
 }
+
+@app.get("/live-airport-operations/{airport_code}")
+def live_airport_operations(
+    airport_code: str
+):
+
+    url = (
+        "http://api.aviationstack.com/v1/flights"
+    )
+
+    params = {
+
+        "access_key":
+        AVIATIONSTACK_API_KEY,
+
+        "dep_iata":
+        airport_code
+    }
+
+    response = requests.get(
+
+        url,
+
+        params=params
+    )
+
+    data = response.json()
+
+    flights = []
+
+    if "data" in data:
+
+        for flight in data["data"][:60]:
+
+            flights.append({
+
+                "flight":
+                (flight.get("flight") or {}).get(
+                    "iata",
+                    "N/A"
+                ),
+
+                "airline":
+                (flight.get("airline") or {}).get(
+                    "name",
+                    "Unknown"
+                ),
+
+                "departure":
+                (flight.get("departure") or {}).get(
+                    "scheduled",
+                    "N/A"
+                ),
+
+                "terminal":
+                (flight.get("departure") or {}).get(
+                    "terminal",
+                    "N/A"
+                ),
+
+                "gate":
+                (flight.get("departure") or {}).get(
+                    "gate",
+                    "N/A"
+                ),
+
+                "status":
+                flight.get(
+                    "flight_status",
+                    "Unknown"
+                ),
+
+                "aircraft":
+                (flight.get("aircraft") or {}).get(
+                    "registration",
+                    "N/A"
+                )
+            })
+
+    return {
+
+        "airport":
+        airport_code,
+
+        "total_flights":
+        len(flights),
+
+        "flights":
+        flights
+    }
