@@ -460,7 +460,7 @@ npm run dev
 ## Main Dashboard
 
 <p align="center">
-  <img src="screenshots/airport.png.png" width="100%">
+  <img src="D:\Airport_App\screenshots\airport.png.png" width="100%">
 </p>
 
 ---
@@ -468,7 +468,7 @@ npm run dev
 ## Weather Disruption Dashboard
 
 <p align="center">
-  <img src="screenshots/weather.png.png" width="100%">
+  <img src="D:\Airport_App\screenshots\weather.png.png" width="100%">
 </p>
 
 ---
@@ -476,7 +476,7 @@ npm run dev
 ## Flight Rerouting Intelligence
 
 <p align="center">
-  <img src="screenshots/rerouting.png.png" width="100%">
+  <img src="D:\Airport_App\screenshots\rerouting.png.png" width="100%">
 </p>
 
 ---
@@ -484,7 +484,7 @@ npm run dev
 ## Airport Operations Dashboard
 
 <p align="center">
-  <img src="screenshots/map.png.png" width="100%">
+  <img src="D:\Airport_App\screenshots\map.png.png" width="100%">
 </p>
 
 ---
