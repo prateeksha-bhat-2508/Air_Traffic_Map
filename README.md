@@ -1,353 +1,463 @@
-# SkyGraph AI
+````markdown
+# SKYGRAPH AI
 
-SkyGraph AI is a full-stack aviation intelligence and disruption analysis platform designed to visualize global airport connectivity, simulate operational disruptions, and analyze aviation network resilience.
+## Aviation Disruption Intelligence and Airport Operations Platform
 
-The platform combines geospatial visualization, aviation route intelligence, backend analytics, and operational disruption simulation into a unified dashboard-based system.
+SKYGRAPH AI is a full-stack aviation intelligence platform designed to analyze global airport connectivity, simulate operational disruptions, visualize route networks, monitor live airport activity, and provide AI-assisted gate optimization insights.
+
+The platform combines aviation datasets, real-time flight APIs, graph-based network analysis, interactive geospatial visualization, and operational intelligence modules into a unified aviation analytics dashboard.
 
 ---
 
-# Features
+# Project Overview
 
-## Global Aviation Network Visualization
+The system provides:
 
-- Interactive world map using MapLibre GL
-- Visualization of airport nodes and airline route networks
-- Dynamic route rendering between airports
-- Airport-based geospatial analytics
+- Global airport visualization
+- Aviation route network mapping
+- Airport connectivity analysis
+- Weather disruption simulation
+- Flight rerouting intelligence
+- Live airport operations monitoring
+- Gate congestion analytics
+- AI-assisted operational optimization
+- Interactive airport intelligence dashboards
 
-## Airport Intelligence Dashboard
+The platform is built using a modern frontend-backend architecture with React, Next.js, FastAPI, Python analytics, and live aviation APIs.
 
-- Airport search functionality
-- Airport detail analytics panel
-- Connectivity analysis
-- Latitude and longitude information
-- Hub classification:
-  - Major Hub
-  - Regional Hub
-  - Minor Airport
-- Top connected routes
-- Route weight analysis
-- Aviation influence metrics
+---
 
-## Weather Disruption Simulation
+# Key Features
 
-Dedicated disruption analysis center capable of simulating airport shutdown scenarios.
+---
 
-Features include:
+## 1. Global Airport Network Visualization
 
+The main dashboard visualizes airports across the globe on an interactive aviation map.
+
+### Features
+- Interactive airport markers
+- Airport hover intelligence popup
+- Global airline route visualization
+- Airport connectivity analytics
+- Dynamic network rendering
+- Searchable airport sidebar
+
+### Information Displayed
+- Airport IATA code
+- Airport name
+- Country
+- Latitude
+- Longitude
+- Connectivity score
+- Airport category
+
+---
+
+## 2. Airport Connectivity Intelligence
+
+The platform analyzes airport route relationships using graph-based aviation connectivity logic.
+
+### Connectivity Metrics
+- Number of connected routes
+- Hub classification
+- Regional airport detection
+- Major airport identification
+- Route density analysis
+
+### Airport Categories
+- Major Airport
+- Regional Airport
+- Minor Airport
+
+Classification is determined dynamically based on route connectivity volume.
+
+---
+
+## 3. Weather Disruption Simulation System
+
+The platform includes a dedicated disruption intelligence dashboard that simulates operational failures caused by weather conditions or airport shutdowns.
+
+### Features
 - Airport disruption simulation
 - Connectivity loss analysis
-- Route impact calculation
-- Affected airport detection
 - Alternative hub recommendation
-- Aviation resilience analytics
-- Operational intelligence dashboard
+- Route disruption estimation
+- Flight rerouting intelligence
+- Disrupted route visualization
 
-## Flight Rerouting Intelligence
-
-The platform generates rerouting suggestions during disruption scenarios.
-
-Includes:
-
-- Simulated rerouted flight paths
-- Flight identifiers
-- Alternative routing hubs
-- Operational continuity analysis
-
-## Backend Intelligence Engine
-
-The backend provides:
-
-- REST APIs
-- Route intelligence processing
-- Aviation network analysis
-- Disruption impact calculations
-- Connectivity analytics
-- Rerouting recommendation generation
+### Output Analytics
+- Affected airports
+- Connectivity reduction
+- Disrupted flight routes
+- Alternative rerouting hubs
+- Simulated operational impact
 
 ---
 
-# Tech Stack
+## 4. Flight Rerouting Intelligence
 
-## Frontend
+The system generates rerouting recommendations when airports become unavailable.
 
-- Next.js
-- React
-- TypeScript
-- Tailwind CSS
-- MapLibre GL
+### Example
+Original Route:
+DEL → FRA → JFK
 
-## Backend
+Suggested Route:
+DEL → DXB → JFK
 
-- FastAPI
-- Python
-
-## Database
-
-- MongoDB
-
-## Data Processing
-
-- CSV aviation datasets
-- Custom route processing pipelines
+### Rerouting Logic
+- Graph-based route substitution
+- Alternative hub selection
+- Connectivity preservation analysis
+- Operational continuity simulation
 
 ---
 
-# System Architecture
+## 5. Live Airport Operations Dashboard
+
+Clicking an airport opens a dedicated airport operations intelligence page.
+
+### Live Operational Data Includes
+- Live flights
+- Flight numbers
+- Airline names
+- Departure schedules
+- Terminal assignments
+- Gate assignments
+- Aircraft registration
+- Operational status
+
+### Operational Metrics
+- Total active flights
+- Active gates
+- Traffic level
+- Operational health
+
+---
+
+## 6. Gate Congestion AI
+
+The platform includes operational analytics for gate congestion monitoring.
+
+### Features
+- Most busy gate detection
+- Gate utilization analytics
+- Underutilized gate identification
+- Gate traffic balancing
+- Operational congestion insights
+
+### Analytics Calculated
+- Flights per gate
+- Gate traffic frequency
+- Operational load distribution
+- Suggested relief gate
+
+---
+
+## 7. AI Optimization Engine
+
+The platform includes AI-inspired optimization heuristics for airport operations management.
+
+### Current Intelligence Logic
+- Gate congestion analysis
+- Traffic scoring
+- Operational load balancing
+- Congestion mitigation recommendations
+
+### Example Recommendation
+“Shift selected flights from Gate 17 to Gate D8 to reduce congestion and improve turnaround efficiency.”
+
+### Algorithms Used
+- Frequency counting
+- Graph traversal
+- Connectivity analysis
+- Operational heuristics
+- Load balancing logic
+
+---
+
+# Technology Stack
+
+---
+
+## Frontend Technologies
+
+### Next.js
+Used for:
+- Frontend application architecture
+- Routing system
+- Dynamic airport pages
+- Client-side rendering
+
+### React
+Used for:
+- Interactive UI rendering
+- State management
+- Dynamic airport intelligence components
+
+### TypeScript
+Used for:
+- Strong typing
+- Scalable frontend architecture
+- Better debugging and maintainability
+
+### Tailwind CSS
+Used for:
+- Modern glassmorphism UI
+- Responsive layouts
+- Dynamic aviation dashboard styling
+
+### MapLibre GL JS
+Used for:
+- Interactive aviation maps
+- Airport marker rendering
+- Route visualization
+- Popup intelligence windows
+
+---
+
+## Backend Technologies
+
+### FastAPI
+Used for:
+- REST API architecture
+- Airport intelligence endpoints
+- Operational analytics APIs
+- Disruption simulation APIs
+
+### Python
+Used for:
+- Data processing
+- Aviation analytics
+- Route analysis
+- AI optimization logic
+
+### Pandas
+Used for:
+- Airport dataset handling
+- Flight data processing
+- Route analytics
+
+### NetworkX
+Used for:
+- Graph-based aviation network analysis
+- Connectivity intelligence
+- Route relationship modeling
+
+### Requests Library
+Used for:
+- External API communication
+- Live aviation data retrieval
+
+---
+
+# Data Sources
+
+---
+
+## 1. OpenFlights Airport Dataset
+
+### Source
+https://openflights.org/data.html
+
+### Data Used
+- Airport names
+- IATA codes
+- ICAO codes
+- Latitude
+- Longitude
+- Country
+- City
+
+### Purpose
+Used for:
+- Global airport visualization
+- Geospatial aviation mapping
+- Airport intelligence generation
+
+---
+
+## 2. OpenFlights Routes Dataset
+
+### Source
+https://openflights.org/data.html
+
+### Data Used
+- Airline routes
+- Source airports
+- Destination airports
+- Route relationships
+
+### Purpose
+Used for:
+- Connectivity analysis
+- Route graph generation
+- Disruption simulation
+- Network intelligence
+
+---
+
+## 3. AviationStack API
+
+### Source
+https://aviationstack.com/
+
+### Live Data Retrieved
+- Flight schedules
+- Airline names
+- Gate assignments
+- Flight statuses
+- Terminal details
+- Aircraft registration
+- Operational flight information
+
+### Purpose
+Used for:
+- Real-time airport operations dashboard
+- Live flight intelligence
+- Gate analytics
+- Operational visualization
+
+---
+
+# Project Architecture
 
 ```text
 Frontend (Next.js + React)
         ↓
-REST API Layer (FastAPI)
+FastAPI Backend APIs
         ↓
-MongoDB Database
+Airport Dataset Processing
         ↓
-Aviation Intelligence Engine
-```
-
----
-
-# Project Structure
-
-```text
-Airport_App/
-│
-├── backend/
-│   ├── main.py
-│   ├── database.py
-│   ├── requirements.txt
-│   └── ...
-│
-├── frontend/
-│   ├── app/
-│   │   ├── page.tsx
-│   │   ├── disruption/
-│   │   │   └── page.tsx
-│   │   └── ...
-│   │
-│   ├── public/
-│   ├── package.json
-│   └── ...
-│
-└── README.md
-```
-
----
-
-# Installation
-
-## Clone Repository
-
-```bash
-git clone <repository_url>
-cd Airport_App
-```
-
----
-
-# Backend Setup
-
-## Navigate to Backend
-
-```bash
-cd backend
-```
-
-## Create Virtual Environment
-
-### Windows
-
-```bash
-python -m venv venv
-venv\Scripts\activate
-```
-
-### Linux / macOS
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-## Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-## Start Backend Server
-
-```bash
-uvicorn main:app --reload
-```
-
-Backend will run on:
-
-```text
-http://127.0.0.1:8000
-```
-
-API documentation available at:
-
-```text
-http://127.0.0.1:8000/docs
-```
-
----
-
-# Frontend Setup
-
-## Navigate to Frontend
-
-```bash
-cd frontend
-```
-
-## Install Dependencies
-
-```bash
-npm install
-```
-
-## Run Frontend
-
-```bash
-npm run dev
-```
-
-Frontend will run on:
-
-```text
-http://localhost:3000
+Graph-Based Network Analytics
+        ↓
+Live AviationStack API Integration
+        ↓
+Operational Intelligence Engine
 ```
 
 ---
 
 # API Endpoints
 
-## Root Endpoint
-
-```http
-GET /
-```
-
-Returns backend status.
-
----
-
-## Get Top Airports
+## Airport Data
 
 ```http
 GET /top-airports
 ```
 
-Returns aviation airport dataset.
+Returns airport intelligence dataset.
 
 ---
 
-## Get Routes
+## Route Data
 
 ```http
 GET /routes
 ```
 
-Returns aviation route network data.
+Returns airline route network.
 
 ---
 
-## Simulate Weather Disruption
+## Disruption Simulation
 
 ```http
 GET /simulate-disruption/{airport_code}
 ```
 
-Example:
+Simulates operational disruption for an airport.
+
+---
+
+## Live Airport Operations
 
 ```http
-GET /simulate-disruption/JFK
+GET /live-airport-operations/{airport_code}
 ```
 
-Returns:
-
-- disrupted routes
-- connectivity loss
-- affected airports
-- rerouting intelligence
-- alternative hub recommendations
+Returns real-time operational data for an airport.
 
 ---
 
-# Core Algorithms
-
-## Connectivity Analysis
-
-Measures airport importance using:
-
-- route density
-- route frequency
-- network integration
-
-## Disruption Impact Analysis
-
-Calculates:
-
-- route losses
-- affected airports
-- operational degradation
-
-## Alternative Hub Recommendation
-
-Identifies substitute aviation hubs based on:
-
-- remaining connectivity
-- network resilience
-- route concentration
-
-## Flight Rerouting Intelligence
-
-Generates alternative routing strategies for disrupted flight paths.
+# User Flow
 
 ---
 
-# Future Enhancements
+## Main Dashboard
 
-Potential future improvements include:
-
-- Real-time flight tracking
-- Live weather integration
-- Predictive disruption analytics
-- Machine learning-based delay prediction
-- Airline-specific route intelligence
-- Passenger flow analysis
-- Cargo network optimization
-- Interactive graph analytics
-- Airport congestion forecasting
-- AI-based operational recommendations
+Users can:
+- Explore airports
+- Search airports
+- Visualize routes
+- Analyze connectivity
 
 ---
 
-# Educational Value
+## Airport Intelligence Panel
 
-This project demonstrates concepts related to:
-
-- Full-stack web development
-- Geospatial visualization
-- Aviation analytics
-- Network science
-- Operational intelligence systems
-- Backend API development
-- Database integration
-- Graph-based analysis
-- Disruption simulation
-- Aviation resilience engineering
+Users can:
+- View airport metadata
+- Analyze connectivity
+- Access flight operations page
 
 ---
 
-# License
+## Airport Operations Dashboard
+
+Users can:
+- Monitor live flights
+- Analyze gate congestion
+- View operational analytics
+- Monitor terminals and gates
+
+---
+
+## Disruption Dashboard
+
+Users can:
+- Simulate airport shutdowns
+- Analyze connectivity loss
+- Visualize rerouting intelligence
+
+---
+
+# Installation
+
+---
+
+## Backend Setup
+
+```bash
+pip install fastapi uvicorn pandas networkx requests
+```
+
+Run backend:
+
+```bash
+uvicorn main:app --reload
+```
+
+---
+
+## Frontend Setup
+
+```bash
+npm install
+```
+
+Run frontend:
+
+```bash
+npm run dev
+```
+
+---
 
 # Screenshots
 
-## Main Airport Dashboard
+## Main Dashboard
 
 <p align="center">
   <img src="screenshots/airport.png.png" width="100%">
@@ -355,15 +465,7 @@ This project demonstrates concepts related to:
 
 ---
 
-## Global Aviation Route Network
-
-<p align="center">
-  <img src="screenshots/map.png.png" width="100%">
-</p>
-
----
-
-## Weather Disruption Intelligence Center
+## Weather Disruption Dashboard
 
 <p align="center">
   <img src="screenshots/weather.png.png" width="100%">
@@ -377,4 +479,52 @@ This project demonstrates concepts related to:
   <img src="screenshots/rerouting.png.png" width="100%">
 </p>
 
-This project is intended for educational and portfolio purposes.
+---
+
+## Airport Operations Dashboard
+
+<p align="center">
+  <img src="screenshots/map.png.png" width="100%">
+</p>
+
+---
+
+# Educational Value
+
+This project demonstrates practical implementation of:
+
+- Graph theory
+- Aviation network analytics
+- Operational intelligence systems
+- Geospatial visualization
+- Full-stack web engineering
+- REST API architecture
+- Live API integration
+- AI-inspired optimization systems
+- Aviation disruption resilience engineering
+
+---
+
+# Future Enhancements
+
+- Real machine learning delay prediction
+- Predictive congestion analytics
+- Weather API integration
+- Real-time aircraft tracking
+- Gate scheduling optimization
+- AI-based operational forecasting
+- Passenger flow analytics
+- Airline-specific analytics
+- Multi-airport disruption propagation
+- Real-time NOTAM integration
+
+---
+
+# Conclusion
+
+SKYGRAPH AI demonstrates a modern aviation intelligence ecosystem capable of combining live aviation data, graph analytics, disruption simulation, operational monitoring, and AI-inspired optimization into a unified interactive platform.
+
+The project showcases how real-world aviation systems can leverage operational analytics, graph theory, and intelligent visualization to improve resilience, situational awareness, and airport operational efficiency.
+
+---
+````
