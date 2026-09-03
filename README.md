@@ -236,23 +236,124 @@ The platform includes AI-inspired operational intelligence logic.
 
 ---
 
-# Project Architecture
-
-```text
-Frontend (Next.js + React)
-        ↓
-FastAPI Backend APIs
-        ↓
-Airport Dataset Processing
-        ↓
-Graph-Based Route Intelligence
-        ↓
-Live AviationStack API Integration
-        ↓
-Operational Intelligence Engine
-```
+                    ┌─────────────────────────────┐
+                    │            USERS            │
+                    │                             │
+                    │ Aviation Analysts           │
+                    │ Airport Operators           │
+                    │ Decision Makers             │
+                    └──────────────┬──────────────┘
+                                   │
+                              HTTPS / Web
+                                   │
+                                   ▼
+┌───────────────────────────────────────────────────────────────────┐
+│                         FRONTEND LAYER                            │
+│                                                                   │
+│ Next.js + React + TypeScript + Tailwind CSS                       │
+│                                                                   │
+│  ┌────────────────┐ ┌──────────────────┐ ┌────────────────────┐  │
+│  │ Global Airport │ │ Airport           │ │ Disruption &       │  │
+│  │ Network Map    │ │ Intelligence     │ │ Rerouting          │  │
+│  │                │ │ Panel             │ │ Interface          │  │
+│  └────────────────┘ └──────────────────┘ └────────────────────┘  │
+│                                                                   │
+│  ┌─────────────────────────────────────────────────────────────┐  │
+│  │ Airport Operations Dashboard                                │  │
+│  └─────────────────────────────────────────────────────────────┘  │
+│                                                                   │
+│ UI Components | State Management | API Client | MapLibre GL JS   │
+└───────────────────────────────┬───────────────────────────────────┘
+                                │
+                         REST / JSON
+                                │
+                                ▼
+┌───────────────────────────────────────────────────────────────────┐
+│                       CORS MIDDLEWARE                             │
+│                                                                   │
+│                  FastAPI CORSMiddleware                           │
+│                                                                   │
+│     Controls browser access between frontend and backend          │
+└───────────────────────────────┬───────────────────────────────────┘
+                                │
+                                ▼
+┌───────────────────────────────────────────────────────────────────┐
+│                         BACKEND LAYER                             │
+│                              FastAPI                              │
+│                                                                   │
+│  ┌──────────────────┐      ┌──────────────────────────────────┐  │
+│  │ API Routes       │      │ Request / Response Handling       │  │
+│  │ & Endpoints      │      │ JSON Responses                    │  │
+│  └──────────────────┘      └──────────────────────────────────┘  │
+│                                                                   │
+│  ┌──────────────────┐      ┌──────────────────────────────────┐  │
+│  │ Business Logic   │      │ External API Integration          │  │
+│  │ & Algorithms     │      │ AviationStack                    │  │
+│  └──────────────────┘      └──────────────────────────────────┘  │
+└───────────────┬──────────────────────────────┬────────────────────┘
+                │                              │
+                │ PyMongo                      │ HTTP API
+                │                              │
+                ▼                              ▼
+┌─────────────────────────────┐    ┌────────────────────────────────┐
+│       MONGODB DATABASE      │    │       AVIATIONSTACK API         │
+│                             │    │                                │
+│ Database: skygraph_ai       │    │ Live Flight Information        │
+│                             │    │ Airport Operations             │
+│ ┌─────────────────────────┐ │    │ Gate Information               │
+│ │ airports_collection     │ │    │ Terminal Information           │
+│ └─────────────────────────┘ │    │ Flight Status                  │
+│                             │    │ Aircraft Information           │
+│ ┌─────────────────────────┐ │    └────────────────────────────────┘
+│ │ routes_collection       │ │
+│ └─────────────────────────┘ │
+└──────────────┬──────────────┘
+               │
+               │
+               ▼
+┌───────────────────────────────────────────────────────────────────┐
+│                     CORE SERVICES                                 │
+│                                                                   │
+│ Airport Data Service                                              │
+│ Route / Network Service                                           │
+│ Disruption Simulation Service                                     │
+│ Rerouting Intelligence Service                                    │
+│ Airport Operations Service                                        │
+│ Gate Optimization Service                                         │
+│ Analytics & Intelligence Service                                  │
+└───────────────────────────────────────────────────────────────────┘
 
 ---
+| Category                           | Technology                        | Purpose                                                                                           |
+| ---------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------- |
+| **Frontend Framework**             | **Next.js**                       | Application framework, routing, and frontend architecture                                         |
+| **Frontend Library**               | **React**                         | Component-based user interface development                                                        |
+| **Programming Language**           | **TypeScript**                    | Type-safe frontend development                                                                    |
+| **Styling**                        | **Tailwind CSS**                  | Responsive UI styling and dashboard layouts                                                       |
+| **Map & Geospatial Visualization** | **MapLibre GL JS**                | Interactive global airport map, markers, popups, and route visualization                          |
+| **Backend Framework**              | **FastAPI**                       | High-performance Python REST API backend                                                          |
+| **Backend Language**               | **Python**                        | Backend services, data processing, algorithms, and API integration                                |
+| **Database**                       | **MongoDB**                       | Persistent storage for airport and route data                                                     |
+| **Database Driver**                | **PyMongo**                       | Python interface for connecting FastAPI with MongoDB                                              |
+| **Database Name**                  | **`skygraph_ai`**                 | MongoDB database containing the application's aviation data                                       |
+| **Database Collections**           | **`airports_collection`**         | Stores airport information and metadata                                                           |
+| **Database Collections**           | **`routes_collection`**           | Stores aviation route/network information                                                         |
+| **API Architecture**               | **REST API**                      | Communication between the Next.js frontend and FastAPI backend                                    |
+| **Data Format**                    | **JSON**                          | Request/response format between frontend, backend, and external APIs                              |
+| **CORS**                           | **FastAPI CORSMiddleware**        | Enables controlled cross-origin communication between frontend and backend                        |
+| **HTTP Client**                    | **Requests**                      | Backend HTTP communication with AviationStack                                                     |
+| **Live Aviation Data**             | **AviationStack API**             | Live flight and airport-operation information                                                     |
+| **Static Aviation Dataset**        | **OpenFlights Dataset**           | Airport and airline route-network data                                                            |
+| **Data Processing**                | **Pandas**                        | Dataset processing, transformation, and preparation                                               |
+| **Graph Analysis**                 | **NetworkX**                      | Aviation network and graph-based connectivity analysis                                            |
+| **Network Intelligence**           | **Graph Algorithms & Heuristics** | Disruption analysis, connectivity analysis, alternative hub selection, and rerouting intelligence |
+| **Disruption Analysis**            | **Custom Python Logic**           | Calculates disrupted routes, affected airports, and connectivity loss                             |
+| **Gate Analytics**                 | **Rule-Based Heuristics**         | Gate traffic counting, busiest/least-busy gate detection, and optimization recommendations        |
+| **Frontend Routing**               | **Next.js App Router**            | Navigation between dashboard, airport, disruption, and operations pages                           |
+| **Development Server**             | **Uvicorn**                       | ASGI server used to run the FastAPI backend                                                       |
+| **Package Management — Frontend**  | **npm**                           | Installation and management of frontend dependencies                                              |
+| **Package Management — Backend**   | **pip**                           | Installation and management of Python dependencies                                                |
+| **API Integration**                | **AviationStack REST API**        | Retrieval of live flight-operation data using airport IATA codes                                  |
 
 # Project Structure
 
