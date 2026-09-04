@@ -233,95 +233,90 @@ The platform includes AI-inspired operational intelligence logic.
 - Alternative gate recommendation
 - Traffic classification
 - Route resilience analysis
+## System Architecture
 
----
-
-                    ┌─────────────────────────────┐
-                    │            USERS            │
-                    │                             │
-                    │ Aviation Analysts           │
-                    │ Airport Operators           │
-                    │ Decision Makers             │
-                    └──────────────┬──────────────┘
-                                   │
-                              HTTPS / Web
-                                   │
-                                   ▼
-┌───────────────────────────────────────────────────────────────────┐
-│                         FRONTEND LAYER                            │
-│                                                                   │
-│ Next.js + React + TypeScript + Tailwind CSS                       │
-│                                                                   │
-│  ┌────────────────┐ ┌──────────────────┐ ┌────────────────────┐  │
-│  │ Global Airport │ │ Airport           │ │ Disruption &       │  │
-│  │ Network Map    │ │ Intelligence     │ │ Rerouting          │  │
-│  │                │ │ Panel             │ │ Interface          │  │
-│  └────────────────┘ └──────────────────┘ └────────────────────┘  │
-│                                                                   │
-│  ┌─────────────────────────────────────────────────────────────┐  │
-│  │ Airport Operations Dashboard                                │  │
-│  └─────────────────────────────────────────────────────────────┘  │
-│                                                                   │
-│ UI Components | State Management | API Client | MapLibre GL JS   │
-└───────────────────────────────┬───────────────────────────────────┘
-                                │
-                         REST / JSON
-                                │
-                                ▼
-┌───────────────────────────────────────────────────────────────────┐
-│                       CORS MIDDLEWARE                             │
-│                                                                   │
-│                  FastAPI CORSMiddleware                           │
-│                                                                   │
-│     Controls browser access between frontend and backend          │
-└───────────────────────────────┬───────────────────────────────────┘
-                                │
-                                ▼
-┌───────────────────────────────────────────────────────────────────┐
-│                         BACKEND LAYER                             │
-│                              FastAPI                              │
-│                                                                   │
-│  ┌──────────────────┐      ┌──────────────────────────────────┐  │
-│  │ API Routes       │      │ Request / Response Handling       │  │
-│  │ & Endpoints      │      │ JSON Responses                    │  │
-│  └──────────────────┘      └──────────────────────────────────┘  │
-│                                                                   │
-│  ┌──────────────────┐      ┌──────────────────────────────────┐  │
-│  │ Business Logic   │      │ External API Integration          │  │
-│  │ & Algorithms     │      │ AviationStack                    │  │
-│  └──────────────────┘      └──────────────────────────────────┘  │
-└───────────────┬──────────────────────────────┬────────────────────┘
-                │                              │
-                │ PyMongo                      │ HTTP API
-                │                              │
-                ▼                              ▼
-┌─────────────────────────────┐    ┌────────────────────────────────┐
-│       MONGODB DATABASE      │    │       AVIATIONSTACK API         │
-│                             │    │                                │
-│ Database: skygraph_ai       │    │ Live Flight Information        │
-│                             │    │ Airport Operations             │
-│ ┌─────────────────────────┐ │    │ Gate Information               │
-│ │ airports_collection     │ │    │ Terminal Information           │
-│ └─────────────────────────┘ │    │ Flight Status                  │
-│                             │    │ Aircraft Information           │
-│ ┌─────────────────────────┐ │    └────────────────────────────────┘
-│ │ routes_collection       │ │
-│ └─────────────────────────┘ │
-└──────────────┬──────────────┘
-               │
-               │
-               ▼
-┌───────────────────────────────────────────────────────────────────┐
-│                     CORE SERVICES                                 │
-│                                                                   │
-│ Airport Data Service                                              │
-│ Route / Network Service                                           │
-│ Disruption Simulation Service                                     │
-│ Rerouting Intelligence Service                                    │
-│ Airport Operations Service                                        │
-│ Gate Optimization Service                                         │
-│ Analytics & Intelligence Service                                  │
-└───────────────────────────────────────────────────────────────────┘
+```text
++-----------------------------+
+|            USERS            |
+|-----------------------------|
+| Aviation Analysts           |
+| Airport Operators           |
+| Decision Makers             |
++--------------+--------------+
+               |
+               | HTTPS / Web
+               v
++--------------------------------------------------+
+|                FRONTEND LAYER                   |
+|--------------------------------------------------|
+| Next.js + React + TypeScript + Tailwind CSS      |
+|                                                  |
+| +----------------+  +------------------------+  |
+| | Global Airport |  | Airport Intelligence   |  |
+| | Network Map    |  | Panel                  |  |
+| +----------------+  +------------------------+  |
+|                                                  |
+| +----------------+  +------------------------+  |
+| | Disruption &   |  | Airport Operations     |  |
+| | Rerouting      |  | Dashboard              |  |
+| +----------------+  +------------------------+  |
+|                                                  |
+| MapLibre GL JS | UI Components | API Client     |
++------------------------+-------------------------+
+                         |
+                         | REST / JSON
+                         v
++--------------------------------------------------+
+|              CORS MIDDLEWARE                    |
+|--------------------------------------------------|
+| FastAPI CORSMiddleware                           |
+| Controls frontend-backend browser communication |
++------------------------+-------------------------+
+                         |
+                         v
++--------------------------------------------------+
+|                 BACKEND LAYER                   |
+|                    FastAPI                      |
+|--------------------------------------------------|
+|                                                  |
+| +----------------+  +------------------------+  |
+| | API Routes     |  | Request / Response     |  |
+| | & Endpoints    |  | Handling / JSON        |  |
+| +----------------+  +------------------------+  |
+|                                                  |
+| +----------------+  +------------------------+  |
+| | Business Logic |  | External API           |  |
+| | & Algorithms   |  | Integration            |  |
+| +----------------+  +------------------------+  |
++-------------+----------------------+-------------+
+              |                      |
+              | PyMongo              | HTTP / Requests
+              |                      |
+              v                      v
++---------------------------+   +-------------------------+
+|       MONGODB             |   |     AVIATIONSTACK       |
+|---------------------------|   |-------------------------|
+| Database: skygraph_ai     |   | Live Flight Data        |
+|                           |   | Airport Operations      |
+| airports_collection       |   | Gate Information        |
+| routes_collection         |   | Terminal Information   |
+|                           |   | Flight Status           |
++-------------+-------------+   | Aircraft Information    |
+              |                 +-------------------------+
+              |
+              v
++--------------------------------------------------+
+|                 CORE SERVICES                   |
+|--------------------------------------------------|
+| Airport Data Service                             |
+| Route / Network Service                          |
+| Disruption Simulation Service                    |
+| Rerouting Intelligence Service                   |
+| Airport Operations Service                       |
+| Gate Optimization Service                        |
+| Analytics & Intelligence Service                 |
++--------------------------------------------------+
+```
 
 ---
 | Category                           | Technology                        | Purpose                                                                                           |
